@@ -1,28 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putunsinged.c                                   :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nhassan <nhassan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nabilhassan <nabilhassan@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/07 16:08:47 by nhassan           #+#    #+#             */
-/*   Updated: 2024/06/07 20:36:26 by nhassan          ###   ########.fr       */
+/*   Created: 2024/01/14 13:51:48 by nabilhassan       #+#    #+#             */
+/*   Updated: 2024/06/14 10:27:23 by nabilhassan      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putunsinged(unsigned int n)
+int	ft_putnbr(int n)
 {
-	int	count;
+	long	num;
+	int		count;
 
 	count = 0;
-	if (n >= 10)
+	num = n;
+	if (num < 0)
 	{
-		count += ft_putnbr(n / 10);
-		count += ft_putnbr(n % 10);
+		count += ft_printchar('-');
+		num = -num;
+	}
+	if (num >= 10)
+	{
+		count += ft_putnbr(num / 10);
+		count += ft_printchar((num % 10) + '0');
 	}
 	else
-		count += ft_printchar(n + '0');
+	{
+		count += ft_printchar(num + '0');
+	}
 	return (count);
 }

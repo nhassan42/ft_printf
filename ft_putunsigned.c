@@ -1,19 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printchar.c                                     :+:      :+:    :+:   */
+/*   ft_putunsinged.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nhassan <nhassan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nabilhassan <nabilhassan@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/05 20:28:53 by nabilhassan       #+#    #+#             */
-/*   Updated: 2024/06/07 16:29:21 by nhassan          ###   ########.fr       */
+/*   Created: 2024/06/07 16:08:47 by nhassan           #+#    #+#             */
+/*   Updated: 2024/06/14 08:59:22 by nabilhassan      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printchar(int c)
+int	ft_putunsigned(unsigned int n)
 {
-	write(1, &c, 1);
-	return (1);
+	int	count;
+
+	count = 0;
+	if (n >= 10)
+	{
+		count += ft_putnbr(n / 10);
+		count += ft_printchar((n % 10) + '0');
+	}
+	else
+		count += ft_printchar(n + '0');
+	return (count);
 }
